@@ -1,0 +1,5 @@
+package com.example.protolove_front
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
