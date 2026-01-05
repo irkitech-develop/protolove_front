@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:protolove_front/utils/colors.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class PrimaryButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: AppColors().primaryColor,
           borderRadius: BorderRadius.circular(24),
         ),
         child: Row(
