@@ -4,7 +4,14 @@ import 'package:protolove_front/utils/colors.dart';
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
-  const PrimaryButton({super.key, required this.text, this.onPressed});
+  final IconData? icon;
+
+  const PrimaryButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +25,11 @@ class PrimaryButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Icon(Icons.arrow_right_alt), Text('Primary Button')],
+          children: [
+            if (icon != null) Icon(icon),
+            if (icon != null) const SizedBox(width: 8),
+            Text(text),
+          ],
         ),
       ),
     );
