@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/services.dart';
 import 'package:protolove_front/screen/login_screen.dart';
+import 'package:protolove_front/utils/colors.dart';
+
+import '../widgets/widgets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  static const colorizeColors = [Colors.white, Colors.black];
+  final  colorizeColors = [AppColors().primaryColor, Colors.pink];
 
   static const colorizeTextStyle = TextStyle(fontSize: 50);
 
@@ -40,19 +43,49 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
-      body: Center(
-        child: AnimatedTextKit(
-          animatedTexts: [
-            ColorizeAnimatedText(
-              'Protolove',
-              textStyle: colorizeTextStyle,
-              colors: colorizeColors,
-              speed: const Duration(milliseconds: 300),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Align(
+            alignment: const Alignment(0, -0.3),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/heart.png',
+                  width: 240,
+                  height: 240,
+                  fit: BoxFit.contain,
+                ),
+
+                AnimatedTextKit(
+                  animatedTexts: [
+                    ColorizeAnimatedText(
+                      'Protolove',
+                      textStyle: colorizeTextStyle,
+                      colors: colorizeColors,
+                      speed: const Duration(milliseconds: 300),
+                    ),
+                  ],
+                  isRepeatingAnimation: false, 
+                ),
+              ],
             ),
-          ],
-          isRepeatingAnimation: false,
-        ),
+          ),
+
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: BottomWave(color: const Color(0xFFFFC1B8), height: 320),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: BottomWave(color: const Color(0xFFFF9F8F), height: 260),
+          ),
+        ],
       ),
     );
   }
