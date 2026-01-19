@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/services.dart';
-import 'package:protolove_front/screen/login_screen.dart';
 import 'package:protolove_front/utils/colors.dart';
 
 import '../widgets/widgets.dart';
+import 'screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(const Duration(milliseconds: 3500), () {
       Navigator.of(
         context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
+      ).pushReplacement(MaterialPageRoute(builder: (_) => SignInUpScreen()));
     });
   }
 

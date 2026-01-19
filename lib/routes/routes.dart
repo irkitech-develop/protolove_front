@@ -10,6 +10,8 @@ class AppRoutes {
       'init': (BuildContext context) => const SplashScreen(),
       'login': (context) => const LoginScreen(),
       'home': (context) => const HomeScreen(),
+      'sign_in_up': (context) =>  SignInUpScreen(),
+      'register': (context) => const RegisterScreen(),
     };
   }
 }
