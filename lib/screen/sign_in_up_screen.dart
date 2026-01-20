@@ -32,6 +32,22 @@ class SignInUpScreen extends StatelessWidget {
               ),
             ),
           ),
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    AppColors().primaryColor.withOpacity(0.15),
+                    AppColors().primaryColor.withOpacity(0.6),
+                    AppColors().primaryColor,
+                  ],
+                ),
+              ),
+            ),
+          ),
 
           Positioned.fill(
             child: ImageFiltered(
@@ -72,7 +88,7 @@ class SignInUpScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 64),
                   child: Divider(thickness: 6, color: Colors.white),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 30),
                 PrimaryButton(
                   text: 'Iniciar sesión',
                   color: AppColors().buttonColor,
@@ -81,7 +97,7 @@ class SignInUpScreen extends StatelessWidget {
                     Navigator.pushNamed(context, 'login');
                   },
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 15),
                 Row(
                   children: [
                     Expanded(
@@ -128,21 +144,17 @@ class StaggeredImages extends StatelessWidget {
 
   final List<String> images = [
     'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
-    'assets/persona.jpg',
+    'assets/pareja_2.jpg',
+    'assets/pareja_7.jpg',
+    'assets/pareja_6.jpeg',
+    'assets/pareja_9.jpg',
+    'assets/pareja_14.jpg',
+    'assets/pareja_15.jpg',
+    'assets/pareja_13.jpg',
+    'assets/pareja_12.jpg',
+    'assets/pareja_4.jpg',
+    'assets/pareja_10.jpg',
+    'assets/pareja_11.jpg',
   ];
 
   @override

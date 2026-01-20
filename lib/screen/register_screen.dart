@@ -159,11 +159,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
 
               const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    '¿Ya tienes una cuenta? ',
+                    style: TextStyle(fontSize: 14),
+                  ),
 
-              /// BACK TO LOGIN
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('¿Ya tienes cuenta? Inicia sesión'),
+                  /// BACK TO LOGIN
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text(
+                      'Iniciar sesión',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pinkAccent,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

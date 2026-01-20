@@ -88,6 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
               ),
+
               const SizedBox(height: 8),
               const Align(
                 alignment: Alignment.centerLeft,
