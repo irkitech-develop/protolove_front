@@ -1,14 +1,44 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../auth/login_screen.dart';
 import 'package:protolove_front/utils/app_messages.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  // Simulación de datos del usuario (luego vendrán de Supabase)
-  final String userName = 'Daniel Chávez';
-  final String userEmail = 'dchavez@irkitech.com';
-  final String? userPhotoUrl = null; // aquí luego pondrás la foto real
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String? userEmail;
+  String userName = 'Usuario'; // luego vendrá de la BD
+  String? userPhotoUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  void _loadUserData() {
+    final user = Supabase.instance.client.auth.currentUser;
+
+    if (user == null) {
+      // Si no hay sesión → login
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => LoginScreen()),
+        );
+      });
+      return;
+    }
+
+    setState(() {
+      userEmail = user.email;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +46,18 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Protolove'),
         centerTitle: true,
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: const Color.fromARGB(255, 255, 107, 156),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Funcionalidad de notificaciones'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+              AppMessages.success(context, 'Funcionalidad de notificaciones.');
             },
           ),
         ],
       ),
 
-      // 👉 ESTO HACE QUE AL ABRIR EL DRAWER SE OPACA EL FONDO
       drawerScrimColor: Colors.black.withOpacity(0.6),
-
       drawer: _buildDrawer(context),
 
       body: const Center(
@@ -60,38 +83,24 @@ class HomeScreen extends StatelessWidget {
                 _drawerItem(
                   icon: Icons.home,
                   text: 'Inicio',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: () => Navigator.pop(context),
                 ),
-
                 _drawerItem(
                   icon: Icons.person,
                   text: 'Mi perfil',
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigator.pushNamed(context, '/profile');
-                  },
+                  onTap: () => Navigator.pop(context),
                 ),
-
                 _drawerItem(
                   icon: Icons.notifications,
                   text: 'Notificaciones',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: () => Navigator.pop(context),
                 ),
-
                 _drawerItem(
                   icon: Icons.settings,
                   text: 'Configuración',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: () => Navigator.pop(context),
                 ),
-
                 const Divider(height: 30),
-
                 _drawerItem(
                   icon: Icons.logout,
                   text: 'Cerrar sesión',
@@ -109,7 +118,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // ================= HEADER DEL DRAWER =================
+  // ================= HEADER =================
 
   Widget _buildDrawerHeader() {
     return Container(
@@ -149,7 +158,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            userEmail,
+            userEmail ?? 'Sin correo',
             style: const TextStyle(fontSize: 14, color: Colors.white70),
           ),
         ],
@@ -157,7 +166,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // ================= ITEM REUTILIZABLE =================
+  // ================= ITEM =================
 
   Widget _drawerItem({
     required IconData icon,
@@ -184,37 +193,39 @@ class HomeScreen extends StatelessWidget {
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Cerrar Sesión'),
-          content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                _performLogout(context);
-              },
-              child: const Text(
-                'Cerrar Sesión',
-                style: TextStyle(color: Colors.red),
+      builder:
+          (_) => AlertDialog(
+            title: const Text('Cerrar Sesión'),
+            content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancelar'),
               ),
-            ),
-          ],
-        );
-      },
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _performLogout(context);
+                },
+                child: const Text(
+                  'Cerrar Sesión',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          ),
     );
   }
 
-  void _performLogout(BuildContext context) {
+  void _performLogout(BuildContext context) async {
+    await Supabase.instance.client.auth.signOut();
+
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-      (route) => false,
+      MaterialPageRoute(builder: (_) => LoginScreen()),
+      (_) => false,
     );
+
     AppMessages.success(context, 'Sesión finalizada correctamente.');
   }
 }

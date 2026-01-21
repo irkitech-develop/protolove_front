@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:protolove_front/widgets/widgets.dart';
-import 'package:protolove_front/screen/home_screen.dart';
+import 'package:protolove_front/screens/home/home_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:protolove_front/utils/app_messages.dart';
-import 'package:protolove_front/screen/register_screen.dart';
-import 'package:protolove_front/screen/forgot_password_screen.dart';
+import 'package:protolove_front/screens/auth/register_screen.dart';
+import 'package:protolove_front/screens/auth/forgot_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

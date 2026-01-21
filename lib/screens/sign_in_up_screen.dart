@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:protolove_front/screen/register_screen.dart';
+import 'package:protolove_front/screens/auth/register_screen.dart';
 import 'package:protolove_front/utils/colors.dart';
 import 'package:protolove_front/widgets/atom/atom.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
