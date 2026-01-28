@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../auth/login_screen.dart';
 import 'package:protolove_front/utils/app_messages.dart';
+import '../profile/profile_view_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -88,7 +89,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 _drawerItem(
                   icon: Icons.person,
                   text: 'Mi perfil',
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const ProfileViewScreen(),
+                      ),
+                    );
+                  },
                 ),
                 _drawerItem(
                   icon: Icons.notifications,
