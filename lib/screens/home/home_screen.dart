@@ -5,6 +5,7 @@ import 'package:protolove_front/utils/app_messages.dart';
 import '../profile/profile_view_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String routeName = 'home';
   const HomeScreen({super.key});
 
   @override

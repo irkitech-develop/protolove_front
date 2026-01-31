@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:protolove_front/routes/routes.dart';
 
+import 'screens/screen.dart';
+import 'service/service.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -23,11 +26,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Protolove',
+      navigatorKey: NavigationService().navigatorKey,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       routes: AppRoutes.getRoutes(),
-      initialRoute: 'init',
+      initialRoute: SplashScreen.routeName,
       debugShowCheckedModeBanner: false,
     );
   }

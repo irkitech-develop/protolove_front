@@ -7,6 +7,7 @@ import 'package:protolove_front/screens/auth/register_screen.dart';
 import 'package:protolove_front/screens/auth/forgot_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String routeName = 'login';
   const LoginScreen({super.key});
 
   @override

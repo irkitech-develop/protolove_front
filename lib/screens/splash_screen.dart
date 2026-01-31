@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/services.dart';
+import 'package:protolove_front/service/service.dart';
 import 'package:protolove_front/utils/colors.dart';
 
 import '../widgets/widgets.dart';
 import 'screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String routeName = 'init';
   const SplashScreen({super.key});
 
   @override
@@ -25,9 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
     Future.delayed(const Duration(milliseconds: 3500), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => SignInUpScreen()));
+      NavigationService().pushReplacementNamed(SignInUpScreen.routeName);
     });
   }
 

@@ -4,6 +4,7 @@ import 'package:protolove_front/utils/app_messages.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RegisterScreen extends StatefulWidget {
+  static const String routeName = 'register';
   const RegisterScreen({super.key});
 
   @override

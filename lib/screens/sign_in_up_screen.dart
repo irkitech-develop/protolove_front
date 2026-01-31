@@ -1,12 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:protolove_front/screens/auth/register_screen.dart';
-import 'package:protolove_front/utils/colors.dart';
-import 'package:protolove_front/widgets/atom/atom.dart';
+
+
+
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../utils/utils.dart';
+import '../widgets/widgets.dart';
+import 'screen.dart';
+
 class SignInUpScreen extends StatelessWidget {
+  static const String routeName = 'sign_in_up';
   const SignInUpScreen({super.key});
 
   @override
@@ -94,7 +99,7 @@ class SignInUpScreen extends StatelessWidget {
                   color: AppColors().buttonColor,
                   textColor: Colors.white,
                   onPressed: () {
-                    Navigator.pushNamed(context, 'login');
+                    Navigator.pushNamed(context, LoginScreen.routeName);
                   },
                 ),
                 const SizedBox(height: 15),
@@ -127,7 +132,7 @@ class SignInUpScreen extends StatelessWidget {
                   textColor: Colors.white,
                   color: AppColors().buttonColor,
                   onPressed: () {
-                    Navigator.pushNamed(context, 'register');
+                    Navigator.pushNamed(context, RegisterScreen.routeName);
                   },
                 ),
               ],
